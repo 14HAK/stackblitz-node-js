@@ -1,6 +1,13 @@
+const http = require('http');
 const fs = require('fs');
 
-const ownRead = fs.createReadStream('./txt/bigdata.txt');
-const ownWrite = fs.createWriteStream('./txt/new.txt');
+const server = http.createServer((req, res) => {
+  const ownReadFile = fs.createReadStream(`${__dirname}/txt/bigData.txt`);
+  ownReadFile.pipe(res);
+});
 
-ownRead.pipe(ownWrite);
+server.listen('8000', '127.0.0.1', (err) => {
+  if (!err) {
+    console.log('server running....');
+  }
+});
