@@ -167,25 +167,38 @@ ownReadStreem.on('data', (chunk) => {
 // .
 // .
 // .
+/*const http = require('http');
 
-/*
-res.end();
-} else if (path === '/process' && req.method === 'POST') {
-  req.on('data', (chunk) => {
-    console.log(chunk);
-  });
+const server = http.createServer((req, res) => {
+  const path = req.url;
+  console.log(path);
 
-  res.write('succes.....');
-  res.end();
-} else {
-  res.write('defult_page');
-  res.end();
-}
+  if (path === '/') {
+    res.write(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+      </head>
+      <body>
+        <form action="/process" method="post">
+          <input type="text" name = "message" />
+        </form>
+      </body>
+    </html>`);
+    res.end();
+  } else if (path === '/process' && req.method === 'POST') {
+    req.on('data', (chunk) => {
+      console.log(chunk);
+    });
+    res.write('here');
+    res.end();
+  } else {
+    res.write('not found........');
+    res.end();
+  }
 });
 
-server.listen('3000', '127.0.0.1', (err) => {
-if (err) {
-  console.log('erroe....');
-}
-});
-*/
+server.listen('8000', '127.0.0.1', (err) => {
+  if (!err) {
+    console.log('server is running.....');
+  }
+}); */
