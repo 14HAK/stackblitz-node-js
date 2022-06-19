@@ -152,6 +152,7 @@ server.listen('5000', '127.0.0.1', () => {
 // .
 /*
 // fs module but streem and buffer mode transfer data using strem chunk
+// createReadStrem
 const fs = require('fs');
 
 const ownReadStreem = fs.createReadStream('./txt/bigData.txt', 'utf-8');
@@ -167,29 +168,30 @@ ownReadStreem.on('data', (chunk) => {
 // .
 // .
 // .
-/*const http = require('http');
+// Node.js Stream & Buffer
+// Node.js Stream
+/*
+const http = require('http');
 
 const server = http.createServer((req, res) => {
   const path = req.url;
-  console.log(path);
 
   if (path === '/') {
-    res.write(`<!DOCTYPE html>
-    <html lang="en">
-      <head>
-      </head>
+    res.write(`
+    <!DOCTYPE html>
       <body>
         <form action="/process" method="post">
           <input type="text" name = "message" />
         </form>
       </body>
-    </html>`);
+    </html>
+    `);
     res.end();
   } else if (path === '/process' && req.method === 'POST') {
     req.on('data', (chunk) => {
       console.log(chunk);
     });
-    res.write('here');
+    res.write('Operation success...');
     res.end();
   } else {
     res.write('not found........');
@@ -201,4 +203,92 @@ server.listen('8000', '127.0.0.1', (err) => {
   if (!err) {
     console.log('server is running.....');
   }
-}); */
+});
+*/
+// .
+// .
+// .
+// .
+// .
+// .
+// Node.js Stream & Buffer
+// Node.js Buffer
+/*
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  const path = req.url;
+  const forms = `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>form</title>
+    </head>
+    <body>
+      <form action="/process" method="post">
+        <input type="text" name="massege" />
+      </form>
+    </body>
+  </html>
+  `;
+  if (path === '/') {
+    res.write(forms);
+    res.end();
+  } else if (path === '/process' && req.method === 'POST') {
+    const body = [];
+    req.on('data', (chunk) => {
+      body.push(chunk);
+      console.log('chunk finished');
+    });
+    req.on('end', () => {
+      console.log('end process finished');
+      const perseData = Buffer.concat(body).toLocaleString();
+      console.log(perseData);
+    });
+    res.write('thank you for submitting...');
+    res.end();
+  }
+});
+
+server.listen('8000', '127.0.0.1', (err) => {
+  if (!err) {
+    console.log('server is running.....');
+  }
+});
+*/
+// .
+// .
+// .
+// .
+// .
+// .
+// fs module but streem and buffer mode Create file using Writestrem using chunk
+// createWriteStrem
+/*
+const fs = require('fs');
+
+const ownReadFile = fs.createReadStream('./txt/bigData.txt');
+const ownWriteFile = fs.createWriteStream('./txt/new.txt');
+
+ownReadFile.on('data', (chunk) => {
+  ownWriteFile.write(chunk);
+});
+*/
+// .
+// .
+// .
+// .
+// .
+// .
+// fs module but streem and buffer mode Create file using Writestrem using chunk
+// createWriteStrem using pipe() method
+/*
+const fs = require('fs');
+
+const ownRead = fs.createReadStream('./txt/bigdata.txt');
+const ownWrite = fs.createWriteStream('./txt/new.txt');
+
+ownRead.pipe(ownWrite);
+*/
