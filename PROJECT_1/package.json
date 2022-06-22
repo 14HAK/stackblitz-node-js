@@ -11,5 +11,14 @@
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2"
-  }
+  },
+  "name": "project_1",
+  "version": "1.0.0",
+  "description": "raw node js project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dulon mahadi",
+  "license": "ISC"
 }
