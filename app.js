@@ -15,6 +15,7 @@ const fs = require('fs');
 //   }
 // });
 const http = require('http');
+const { all1 } = require('');
 
 const server = http.createServer((req, res) => {
   const ownread = fs.createReadStream(`${__dirname}/txt/bigData.txt`);

@@ -1,0 +1,7 @@
+const all1 = {};
+
+all1.fun1 = () => {
+  console.log('man');
+};
+
+module.exports = all1;
